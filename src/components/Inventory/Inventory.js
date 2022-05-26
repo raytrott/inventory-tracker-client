@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { withRouter } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 
 import { index } from '../../api/inventory'
 
@@ -8,21 +8,35 @@ const Inventory = ({ user }) => {
 
   useEffect(() => {
     index(user)
-      .then((res) => setInventories(res.data.inventory))
-      .then((res) => console.log(res))
+      .then((res) => {
+        return res
+      })
+      .then((res) => setInventories(res.data))
       .catch((error) => {
         console.log(error)
       })
-  })
-
-  return (
-    <div>
-      <ul>
-        <li>Hello World</li>
-        <li>{inventories}</li>
-      </ul>
-    </div>
+  }, []
   )
+
+  if (inventories.length < 1) {
+    return (
+      <h1>Loading...</h1>
+    )
+  } else {
+    const inventoryJSX = inventories.inventories.map((inventory) => (
+      <div key={inventory._id}>
+        <li>{inventory.name}</li>
+      </div>
+    ))
+
+    return (
+      <div>
+        <h3>My Inventories</h3>
+        <h4>{inventoryJSX}</h4>
+        <Link to='/new-inventory'><button>Add New Inventory</button></Link>
+      </div>
+    )
+  }
 }
 
 export default withRouter(Inventory)

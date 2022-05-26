@@ -11,6 +11,7 @@ import SignIn from './components/auth/SignIn'
 import SignOut from './components/auth/SignOut'
 import ChangePassword from './components/auth/ChangePassword'
 import Inventory from './components/Inventory/Inventory'
+import NewInventory from './components/Inventory/NewInventory'
 
 class App extends Component {
   constructor (props) {
@@ -92,6 +93,13 @@ class App extends Component {
             path='/'
             render={() => (
               <Inventory user={user} />
+            )}
+          />
+          <AuthenticatedRoute
+            user={user}
+            path='/new-inventory'
+            render={() => (
+              <NewInventory user={user} />
             )}
           />
         </main>
