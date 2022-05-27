@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/inventory-tracker-client/static/css/main.432dfbff.chunk.css",
-    "main.js": "/inventory-tracker-client/static/js/main.a9aa6cd0.chunk.js",
-    "main.js.map": "/inventory-tracker-client/static/js/main.a9aa6cd0.chunk.js.map",
+    "main.js": "/inventory-tracker-client/static/js/main.2bfeb097.chunk.js",
+    "main.js.map": "/inventory-tracker-client/static/js/main.2bfeb097.chunk.js.map",
     "runtime-main.js": "/inventory-tracker-client/static/js/runtime-main.f4524f16.js",
     "runtime-main.js.map": "/inventory-tracker-client/static/js/runtime-main.f4524f16.js.map",
     "static/js/2.125ba970.chunk.js": "/inventory-tracker-client/static/js/2.125ba970.chunk.js",
@@ -15,6 +15,6 @@
     "static/js/runtime-main.f4524f16.js",
     "static/js/2.125ba970.chunk.js",
     "static/css/main.432dfbff.chunk.css",
-    "static/js/main.a9aa6cd0.chunk.js"
+    "static/js/main.2bfeb097.chunk.js"
   ]
 }
