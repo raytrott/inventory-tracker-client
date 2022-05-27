@@ -7,10 +7,10 @@ import apiUrl from '../../apiConfig'
 class Inventory extends Component {
   constructor (props) {
     super(props)
-    console.log(props.match.params.id)
+    // console.log(props.match.params.id)
 
     this.state = {
-      inventory: {},
+      inventory: [],
       deleted: false,
       user: props.user,
       loading: true
@@ -29,10 +29,11 @@ class Inventory extends Component {
         Authorization: `Bearer ${this.state.user.token}`
       }
     })
-      .then((res) => (res))
-      .then((res) => console.log(res.data))
-      .then((res) => this.setState({ inventory: res.data.inventory }))
-      .then(this.setState({ loading: false }))
+      .then((res) => {
+        console.log(res.data)
+        return res
+      })
+      .then((res) => this.setState({ loading: false, inventory: res.data.inventory }))
       .catch(console.error)
   }
 
@@ -57,7 +58,6 @@ class Inventory extends Component {
         Authorization: `Bearer ${this.state.user.token}`
       }
     })
-      // update based on API call result
       .then(() => this.setState({ deleted: true }))
       .catch(console.error)
   }
@@ -70,14 +70,23 @@ class Inventory extends Component {
       return <h3>Loading...</h3>
     }
 
+    const itemNameJSX = this.state.inventory.items.map((item) => (
+      <span key={item._id}>{item.name}</span>
+    ))
+
+    const itemQuantJSX = this.state.inventory.items.map((item) => (
+      <span key={item._id}>{item.quantity}</span>
+    ))
+
     return (
-      <>
-        <h1>Inventory</h1>
-        <h3>Inventory Name: {this.state.inventory.name}</h3>
-        <h5>Items: {this.state.inventory.items}</h5>
-        <button onClick={this.handleClick}>Delete</button>
-        <Link to={'/inventories/' + this.props.match.params.id + '/edit'}><button>Edit</button></Link>
-      </>
+      <div className='row'>
+        <div className='col-sm-10 col-md-8 mx-auto mt-5'>
+          <h2>{this.state.inventory.name}</h2>
+          <h5>{itemNameJSX}: {itemQuantJSX}</h5>
+          <button onClick={this.handleClick}>Delete</button>
+          <Link to={'/inventories/' + this.props.match.params.id + '/edit'}><button>Edit</button></Link>
+        </div>
+      </div>
     )
   }
 }
