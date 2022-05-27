@@ -17,7 +17,13 @@ const Inventories = ({ user }) => {
 
   if (inventories.length < 1) {
     return (
-      <h3>Loading...</h3>
+      <div className='row'>
+        <div className='col-sm-10 col-md-8 mx-auto mt-5'>
+          <h1>Welcome!</h1>
+          <h3>Create an inventory list by clicking the button below!</h3>
+          <Link to='/new-inventory'><button>Add New Inventory</button></Link>
+        </div>
+      </div>
     )
   } else {
     const inventoriesJSX = inventories.inventories.map((inventory) => (
