@@ -13,6 +13,7 @@ import ChangePassword from './components/auth/ChangePassword'
 import Inventories from './components/Inventory/Inventories'
 import NewInventory from './components/Inventory/NewInventory'
 import Inventory from './components/Inventory/Inventory'
+import InventoryEdit from './components/Inventory/InventoryEdit.js'
 
 class App extends Component {
   constructor (props) {
@@ -108,6 +109,11 @@ class App extends Component {
             exact path='/inventories/:id'
             user={user}
             render={({ match }) => <Inventory match={match} user={user} />}
+          />
+          <AuthenticatedRoute
+            exact path='/inventories/:id/edit'
+            user={user}
+            render={({ match }) => <InventoryEdit match={match} user={user} />}
           />
         </main>
       </Fragment>

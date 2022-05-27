@@ -5,7 +5,7 @@ import axios from 'axios'
 import apiUrl from '../../apiConfig'
 import InvForm from './InvForm'
 
-class NewInventory extends Component {
+class InventoryEdit extends Component {
   constructor (props) {
     super(props)
 
@@ -14,7 +14,8 @@ class NewInventory extends Component {
       itemName: '',
       itemQuant: '',
       createdInvId: null,
-      user: props.user
+      user: props.user,
+      created: false
     }
   }
 
@@ -28,13 +29,12 @@ class NewInventory extends Component {
 
   handleSubmit = event => {
     event.preventDefault()
-    console.log(event)
-    console.log(this.state.name)
-    console.log(this.state.itemQuant)
-    console.log(this.state.user)
+
+    const id = this.props.match.params.id
+
     axios({
-      url: `${apiUrl}/inventories`,
-      method: 'POST',
+      url: apiUrl + '/inventories/' + id,
+      method: 'PATCH',
       headers: {
         Authorization: `Bearer ${this.state.user.token}`
       },
@@ -49,7 +49,12 @@ class NewInventory extends Component {
         }
       }
     })
+      .then((res) => {
+        console.log(res.data)
+        return res
+      })
       .then(res => this.setState({ createdInvId: res.data.inventory._id }))
+      .then(this.setState({ created: true }))
       .catch(console.error)
   }
 
@@ -60,11 +65,14 @@ class NewInventory extends Component {
     if (createdInvId) {
       return <Redirect to={'/'} />
     }
+    if (this.state.created) {
+      return <Redirect to={'/'} />
+    }
 
     return (
       <div className='row'>
         <div className='col-sm-10 col-md-8 mx-auto mt-5'>
-          <h3>Add New Inventory List</h3>
+          <h3>Update Inventory List</h3>
           <InvForm
             inventory={inventory}
             handleChangeName={handleChangeName}
@@ -78,4 +86,4 @@ class NewInventory extends Component {
   }
 }
 
-export default NewInventory
+export default InventoryEdit

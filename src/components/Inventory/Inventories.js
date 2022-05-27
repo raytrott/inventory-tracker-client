@@ -8,9 +8,6 @@ const Inventories = ({ user }) => {
 
   useEffect(() => {
     index(user)
-      .then((res) => {
-        return res
-      })
       .then((res) => setInventories(res.data))
       .catch((error) => {
         console.log(error)
