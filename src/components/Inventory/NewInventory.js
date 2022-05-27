@@ -11,9 +11,11 @@ class NewInventory extends Component {
 
     this.state = {
       name: '',
-      items: '',
+      itemName: '',
+      itemQuant: '',
       createdInvId: null,
-      user: props.user
+      user: props.user,
+      created: false
     }
   }
 
@@ -29,7 +31,8 @@ class NewInventory extends Component {
     event.preventDefault()
     console.log(event)
     console.log(this.state.name)
-    console.log(this.state.items)
+    console.log(this.state.itemQuant)
+    console.log(this.state.user)
     axios({
       url: `${apiUrl}/inventories`,
       method: 'POST',
@@ -39,12 +42,17 @@ class NewInventory extends Component {
       data: {
         inventory: {
           name: this.state.name,
-          items: this.state.items
+          items: [{
+            name: this.state.itemName,
+            quantity: this.state.itemQuant,
+            owner: this.state.user._id
+          }]
         }
       }
     })
       .then(res => console.log(res.data))
       .then(res => this.setState({ createdInvId: res.data.inventory._id }))
+      .then(this.setState({ created: true }))
       .catch(console.error)
   }
 
@@ -55,16 +63,22 @@ class NewInventory extends Component {
     if (createdInvId) {
       return <Redirect to={'/'} />
     }
+    if (this.state.created) {
+      return <Redirect to={'/'} />
+    }
 
     return (
-      <div>
-        <InvForm
-          inventory={inventory}
-          handleChangeName={handleChangeName}
-          handleChangeItems={handleChangeItems}
-          handleSubmit={handleSubmit}
-          cancelPath="/"
-        />
+      <div className='row'>
+        <div className='col-sm-10 col-md-8 mx-auto mt-5'>
+          <h3>Add New Inventory List</h3>
+          <InvForm
+            inventory={inventory}
+            handleChangeName={handleChangeName}
+            handleChangeItems={handleChangeItems}
+            handleSubmit={handleSubmit}
+            cancelPath="/"
+          />
+        </div>
       </div>
     )
   }

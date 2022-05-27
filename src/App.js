@@ -10,8 +10,9 @@ import SignUp from './components/auth/SignUp'
 import SignIn from './components/auth/SignIn'
 import SignOut from './components/auth/SignOut'
 import ChangePassword from './components/auth/ChangePassword'
-import Inventory from './components/Inventory/Inventory'
+import Inventories from './components/Inventory/Inventories'
 import NewInventory from './components/Inventory/NewInventory'
+import Inventory from './components/Inventory/Inventory'
 
 class App extends Component {
   constructor (props) {
@@ -89,10 +90,11 @@ class App extends Component {
             )}
           />
           <AuthenticatedRoute
+            exact
             user={user}
             path='/'
             render={() => (
-              <Inventory user={user} />
+              <Inventories user={user} />
             )}
           />
           <AuthenticatedRoute
@@ -101,6 +103,11 @@ class App extends Component {
             render={() => (
               <NewInventory user={user} />
             )}
+          />
+          <AuthenticatedRoute
+            exact path='/inventories/:id'
+            user={user}
+            render={({ match }) => <Inventory match={match} user={user} />}
           />
         </main>
       </Fragment>

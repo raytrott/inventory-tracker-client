@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const InvForm = ({ name, items, handleSubmit, handleChangeName, handleChangeItems, cancelPath }) => (
+const InvForm = ({ name, itemName, itemQuant, handleSubmit, handleChangeName, handleChangeItems, cancelPath }) => (
   <form onSubmit={handleSubmit}>
     <label>Name</label>
     <input
@@ -9,13 +9,21 @@ const InvForm = ({ name, items, handleSubmit, handleChangeName, handleChangeItem
       value={name}
       name="name"
       onChange={handleChangeName}
-    />
+    /><br></br>
 
-    <label>Items</label>
+    <label>Item Name</label>
     <input
       placeholder="Bedframe"
-      value={items}
-      name="Items"
+      value={itemName}
+      name="itemName"
+      onChange={handleChangeItems}
+    />
+
+    <label>Item Quantity</label>
+    <input
+      placeholder="0"
+      value={itemQuant}
+      name="itemQuant"
       onChange={handleChangeItems}
     />
 
