@@ -1,6 +1,6 @@
 let apiUrl
 const apiUrls = {
-  production: 'http://fast-forest-28405.herokuapp.com',
+  production: 'https://fast-forest-28405.herokuapp.com',
   development: 'http://localhost:4741'
 }
 
