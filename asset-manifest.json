@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/inventory-tracker-client/static/css/main.432dfbff.chunk.css",
+    "main.js": "/inventory-tracker-client/static/js/main.94d8f60c.chunk.js",
+    "main.js.map": "/inventory-tracker-client/static/js/main.94d8f60c.chunk.js.map",
+    "runtime-main.js": "/inventory-tracker-client/static/js/runtime-main.f4524f16.js",
+    "runtime-main.js.map": "/inventory-tracker-client/static/js/runtime-main.f4524f16.js.map",
+    "static/js/2.125ba970.chunk.js": "/inventory-tracker-client/static/js/2.125ba970.chunk.js",
+    "static/js/2.125ba970.chunk.js.map": "/inventory-tracker-client/static/js/2.125ba970.chunk.js.map",
+    "index.html": "/inventory-tracker-client/index.html",
+    "static/css/main.432dfbff.chunk.css.map": "/inventory-tracker-client/static/css/main.432dfbff.chunk.css.map",
+    "static/js/2.125ba970.chunk.js.LICENSE.txt": "/inventory-tracker-client/static/js/2.125ba970.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.f4524f16.js",
+    "static/js/2.125ba970.chunk.js",
+    "static/css/main.432dfbff.chunk.css",
+    "static/js/main.94d8f60c.chunk.js"
+  ]
+}
