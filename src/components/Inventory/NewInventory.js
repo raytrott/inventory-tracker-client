@@ -28,10 +28,6 @@ class NewInventory extends Component {
 
   handleSubmit = event => {
     event.preventDefault()
-    console.log(event)
-    console.log(this.state.name)
-    console.log(this.state.itemQuant)
-    console.log(this.state.user)
     axios({
       url: `${apiUrl}/inventories`,
       method: 'POST',

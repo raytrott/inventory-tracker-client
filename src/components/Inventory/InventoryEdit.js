@@ -13,9 +13,8 @@ class InventoryEdit extends Component {
       name: '',
       itemName: '',
       itemQuant: '',
-      createdInvId: null,
-      user: props.user,
-      created: false
+      updated: null,
+      user: props.user
     }
   }
 
@@ -49,23 +48,15 @@ class InventoryEdit extends Component {
         }
       }
     })
-      .then((res) => {
-        console.log(res.data)
-        return res
-      })
-      .then(res => this.setState({ createdInvId: res.data.inventory._id }))
-      .then(this.setState({ created: true }))
+      .then(this.setState({ updated: true }))
       .catch(console.error)
   }
 
   render () {
     const { handleChangeName, handleChangeItems, handleSubmit } = this
-    const { createdInvId, inventory } = this.state
+    const { updated, inventory } = this.state
 
-    if (createdInvId) {
-      return <Redirect to={'/'} />
-    }
-    if (this.state.created) {
+    if (updated) {
       return <Redirect to={'/'} />
     }
 
