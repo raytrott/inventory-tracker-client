@@ -29,7 +29,7 @@ const InvForm = ({ name, itemName, itemQuant, handleSubmit, handleChangeName, ha
 
     <button type="submit">Submit</button>
     <Link to={cancelPath}>
-      <button>Cancel</button>
+      <button>Back</button>
     </Link>
   </form>
 )

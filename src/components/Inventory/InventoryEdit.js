@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 
 import apiUrl from '../../apiConfig'
 import InvForm from './InvForm'
+import { updateSuccess, updateFailure } from '../AutoDismissAlert/messages'
 
 class InventoryEdit extends Component {
   constructor (props) {
@@ -29,6 +29,8 @@ class InventoryEdit extends Component {
   handleSubmit = event => {
     event.preventDefault()
 
+    const { msgAlert } = this.props
+
     const id = this.props.match.params.id
 
     axios({
@@ -49,16 +51,25 @@ class InventoryEdit extends Component {
       }
     })
       .then(this.setState({ updated: true }))
-      .catch(console.error)
+      .then(() =>
+        msgAlert({
+          heading: 'Update Inventory Success',
+          message: updateSuccess,
+          variant: 'success'
+        })
+      )
+      .catch((error) => {
+        msgAlert({
+          heading: 'Update Inventory failed with error: ' + error.message,
+          message: updateFailure,
+          variant: 'danger'
+        })
+      })
   }
 
   render () {
     const { handleChangeName, handleChangeItems, handleSubmit } = this
-    const { updated, inventory } = this.state
-
-    if (updated) {
-      return <Redirect to={'/'} />
-    }
+    const { inventory } = this.state
 
     return (
       <div className='row'>

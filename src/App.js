@@ -63,13 +63,19 @@ class App extends Component {
 	        <Route
             path='/sign-up'
             render={() => (
-              <SignUp msgAlert={this.msgAlert} setUser={this.setUser} />
+              <SignUp
+                msgAlert={this.msgAlert}
+                setUser={this.setUser}
+              />
             )}
           />
           <Route
             path='/sign-in'
             render={() => (
-              <SignIn msgAlert={this.msgAlert} setUser={this.setUser} />
+              <SignIn
+                msgAlert={this.msgAlert}
+                setUser={this.setUser}
+              />
             )}
           />
           <AuthenticatedRoute
@@ -87,7 +93,10 @@ class App extends Component {
             user={user}
             path='/change-password'
             render={() => (
-              <ChangePassword msgAlert={this.msgAlert} user={user} />
+              <ChangePassword
+                msgAlert={this.msgAlert}
+                user={user}
+              />
             )}
           />
           <AuthenticatedRoute
@@ -95,25 +104,42 @@ class App extends Component {
             user={user}
             path='/'
             render={() => (
-              <Inventories user={user} />
+              <Inventories
+                user={user}
+              />
             )}
           />
           <AuthenticatedRoute
             user={user}
             path='/new-inventory'
             render={() => (
-              <NewInventory user={user} />
+              <NewInventory
+                msgAlert={this.msgAlert}
+                user={user}
+              />
             )}
           />
           <AuthenticatedRoute
             exact path='/inventories/:id'
             user={user}
-            render={({ match }) => <Inventory match={match} user={user} />}
+            render={({ match }) => (
+              <Inventory
+                msgAlert={this.msgAlert}
+                match={match}
+                user={user}
+              />
+            )}
           />
           <AuthenticatedRoute
             exact path='/inventories/:id/edit'
             user={user}
-            render={({ match }) => <InventoryEdit match={match} user={user} />}
+            render={({ match }) => (
+              <InventoryEdit
+                msgAlert={this.msgAlert}
+                match={match}
+                user={user}
+              />
+            )}
           />
         </main>
       </Fragment>

@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import { Redirect, Link } from 'react-router-dom'
 
 import apiUrl from '../../apiConfig'
+import { deleteSuccess, deleteFailure } from '../AutoDismissAlert/messages'
 
 class Inventory extends Component {
   constructor (props) {
@@ -33,6 +34,7 @@ class Inventory extends Component {
 
   handleClick = () => {
     const id = this.props.match.params.id
+    const { msgAlert } = this.props
 
     axios({
       url: apiUrl + '/inventories/' + id,
@@ -42,7 +44,20 @@ class Inventory extends Component {
       }
     })
       .then(() => this.setState({ deleted: true }))
-      .catch(console.error)
+      .then(() =>
+        msgAlert({
+          heading: 'Delete Inventory Success',
+          message: deleteSuccess,
+          variant: 'success'
+        })
+      )
+      .catch((error) => {
+        msgAlert({
+          heading: 'Delete Inventory failed with error: ' + error.message,
+          message: deleteFailure,
+          variant: 'danger'
+        })
+      })
   }
 
   render () {

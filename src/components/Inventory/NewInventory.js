@@ -4,6 +4,7 @@ import axios from 'axios'
 
 import apiUrl from '../../apiConfig'
 import InvForm from './InvForm'
+import { newInvSuccess, newInvFailure } from '../AutoDismissAlert/messages'
 
 class NewInventory extends Component {
   constructor (props) {
@@ -28,6 +29,9 @@ class NewInventory extends Component {
 
   handleSubmit = event => {
     event.preventDefault()
+
+    const { msgAlert } = this.props
+
     axios({
       url: `${apiUrl}/inventories`,
       method: 'POST',
@@ -46,7 +50,20 @@ class NewInventory extends Component {
       }
     })
       .then(res => this.setState({ createdInvId: res.data.inventory._id }))
-      .catch(console.error)
+      .then(() =>
+        msgAlert({
+          heading: 'New Inventory Success',
+          message: newInvSuccess,
+          variant: 'success'
+        })
+      )
+      .catch((error) => {
+        msgAlert({
+          heading: 'New Inventory failed with error: ' + error.message,
+          message: newInvFailure,
+          variant: 'danger'
+        })
+      })
   }
 
   render () {
